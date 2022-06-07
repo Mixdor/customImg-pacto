@@ -1,5 +1,4 @@
 document.getElementById("canvas").style.display = 'none';
-document.getElementById("btnDescargar").style.display = 'none';
 document.getElementById("flechaIzq").disabled = true;
 
 var baseImg = 1;
@@ -12,14 +11,13 @@ function obtFile(){
   if (file) {
     img.src = URL.createObjectURL(file);
   }
+  funPrueba();
 }
 
 function descargar(){
-  const canvas = document.getElementById("canvas");
-  
   var link = window.document.createElement( 'a' ),
         url = canvas.toDataURL(),
-        filename = 'screenshot.jpg';
+        filename = 'screenshot.png';
  
     link.setAttribute( 'href', url );
     link.setAttribute( 'download', filename );
@@ -27,14 +25,6 @@ function descargar(){
     window.document.body.appendChild( link );
     link.click();
     window.document.body.removeChild( link );
-}
-
-function funCanvas(){
-  const imgOrig = document.getElementById("imgOrig");
-
-  funReal();
-  funPrueba();
-  document.getElementById("btnDescargar").style.display = '';
 }
 
 
@@ -60,7 +50,7 @@ function deslIzq(){
     document.getElementById("flechaDer").disabled = false;
   }
   baseImg=baseImg-1;
-  funCanvas();
+  funPrueba();
 }
 
 
@@ -86,7 +76,7 @@ function deslDer(){
     document.getElementById("flechaDer").disabled = true;
   }
   baseImg=baseImg+1;
-  funCanvas();
+  funPrueba();
 }
 
 
@@ -429,7 +419,7 @@ function funReal() {
 
     }
 
-
+    descargar();
   }
 }
 
